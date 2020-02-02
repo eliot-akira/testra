@@ -1,5 +1,5 @@
 {
-  "name": "testa",
+  "name": "testra",
   "version": "1.0.0",
   "description": "Test runner",
   "main": "index.js",
@@ -16,13 +16,13 @@
     "ansi-styles": "^4.2.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.3",
-    "@babel/core": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "@types/ansi-styles": "^3.2.1",
     "@types/node": "^13.7.0",
     "babel-plugin-add-module-exports": "^1.0.2",
-    "concurrently": "^5.0.2",
+    "concurrently": "^5.1.0",
     "nodemon": "^2.0.2",
     "typescript": "^3.7.5"
   },
@@ -30,6 +30,6 @@
   "author": "Eliot Akira",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eliot-akira/medux.git"
+    "url": "git+https://github.com/eliot-akira/testra.git"
   }
 }
