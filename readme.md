@@ -56,11 +56,21 @@ export default test => {
 }
 ```
 
-### Run
+### Load
 
 Use a script in `package.json` to load your test entry file.
 
-Example with `ts-node`
+Example
+
+```json
+{
+  "scripts": {
+    "test": "node src/test/index.js"
+  }
+}
+```
+
+Example with [`ts-node`](https://github.com/TypeStrong/ts-node)
 
 ```json
 {
@@ -73,7 +83,7 @@ Example with `ts-node`
 }
 ```
 
-Example with `@babel/node`
+Example with [`@babel/node`](https://github.com/babel/babel/tree/master/packages/babel-node)
 
 ```json
 {
@@ -86,6 +96,7 @@ Example with `@babel/node`
 }
 ```
 
+This library uses itself for tests. See the `dev` script in `package.json` for an example with [`concurrently`](https://github.com/kimmobrunfeldt/concurrently) and [`nodemon`](https://github.com/remy/nodemon).
 
 ## Develop this library
 
