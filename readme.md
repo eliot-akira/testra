@@ -8,7 +8,7 @@ yarn add --dev testa
 
 ## Use
 
-`src/test/index.{ts,js}`
+Example: `src/test/index.{ts,js}`
 
 ```js
 import { test, runTests } from 'testa'
@@ -31,19 +31,19 @@ runTests() // const result = await runTests()
 
 ```js
 import { testGroup, runTestGroups } from 'testa'
+import featureTest from './feature'
+import anotherFeatureTest from './anotherFeature'
 
 testGroup('Group name', test => {
 
-  // require('@babel/register')
-
-  require('./feature')(test)
-  require('./another-feature')(test)
+  featureTest(test)
+  anotherFeatureTest(test)
 })
 
 runTestGroups() // const result = await runTestGroups()
 ```
 
-`src/test/feature.{ts,js}`
+Example: `src/test/feature.{ts,js}`
 
 ```js
 export default test => {
@@ -58,9 +58,22 @@ export default test => {
 
 ### Run
 
-Use script in `package.json`
+Use a script in `package.json` to load your test entry file.
 
-Example
+Example with `ts-node`
+
+```json
+{
+  "scripts": {
+    "test": "ts-node --transpile-only src/test/index.ts"
+  },
+  "devDependencies": {
+    "ts-node": "*"
+  }
+}
+```
+
+Example with `@babel/node`
 
 ```json
 {
