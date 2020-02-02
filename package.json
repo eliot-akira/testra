@@ -1,0 +1,35 @@
+{
+  "name": "testa",
+  "version": "1.0.0",
+  "description": "Test runner",
+  "main": "index.js",
+  "browser": "web.js",
+  "scripts": {
+    "dev": "concurrently --raw --names babel,test,type \"babel src --verbose --out-dir build --extensions \".js,.ts\" --watch\" \"sleep 2 && nodemon --delay 1 --watch build build/test\" \"tsc --preserveWatchOutput --noEmit --watch\"",
+    "build": "babel src --out-dir build --extensions \".js,.ts\" && tsc --declaration --emitDeclarationOnly",
+    "type": "tsc --preserveWatchOutput --noEmit --watch",
+    "test": "node build/test",
+    "clean": "rm -rf build",
+    "release": "yarn build && cp package.json build && cp readme.md build && cd build && rm -rf test && npm publish"
+  },
+  "dependencies": {
+    "ansi-styles": "^4.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@types/ansi-styles": "^3.2.1",
+    "@types/node": "^13.7.0",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "concurrently": "^5.0.2",
+    "nodemon": "^2.0.2",
+    "typescript": "^3.7.5"
+  },
+  "license": "MIT",
+  "author": "Eliot Akira",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliot-akira/medux.git"
+  }
+}
