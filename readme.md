@@ -3,7 +3,7 @@
 ## Install
 
 ```sh
-yarn add --dev testa
+yarn add --dev testra
 ```
 
 ## Use
@@ -11,7 +11,7 @@ yarn add --dev testa
 Example: `src/test/index.{ts,js}`
 
 ```js
-import { test, runTests } from 'testa'
+import { test, runTests } from 'testra'
 
 test('Feature name', (it, is) => {
 
@@ -30,7 +30,7 @@ runTests() // const result = await runTests()
 ### Test groups
 
 ```js
-import { testGroup, runTestGroups } from 'testa'
+import { testGroup, runTestGroups } from 'testra'
 import featureTest from './feature'
 import anotherFeatureTest from './anotherFeature'
 
