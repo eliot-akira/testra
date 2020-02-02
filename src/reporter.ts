@@ -22,7 +22,7 @@ export const createReporter = (logger: LoggerInterface) => {
     case 'assert': {
       const [title, result, ...info] = args
       log`  ${ result ? green('✓') : red('✕') } ${title}`
-      if (info.length) log`${info.join(' ')}`
+      if (info.length) info.forEach(i => console.log(i))
       break
     }
     case 'error':
@@ -47,7 +47,7 @@ export const createReporter = (logger: LoggerInterface) => {
     case 'groupTitle': {
       const [title] = args
       log``
-      log(title)
+      log`${title}`
       break
     }
     case 'groupAssert': {

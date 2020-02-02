@@ -1,4 +1,4 @@
-import { createResults, test, runTests, TestFunction } from './tester'
+import { createResults, Results, test, clearTests, setTests, runTests, TestFunction } from './tester'
 import { Reporter } from './reporter'
 
 type TestGroup = {
@@ -10,6 +10,15 @@ type TestGroupCallback = (test: TestFunction) => void | Promise<void>
 
 const testGroups: TestGroup[] = []
 
+const clearTestGroups = (): TestGroup[] => {
+  return testGroups.splice(0)
+}
+
+export const setTestGroups = (arr: TestGroup[]) => {
+  clearTestGroups()
+  testGroups.push(...arr)
+}
+
 export const testGroup = (name: string, fn: TestGroupCallback) => {
   testGroups.push({
     name,
@@ -20,12 +29,15 @@ export const testGroup = (name: string, fn: TestGroupCallback) => {
 export const runTestGroups = async (props: {
   report?: Reporter,
   defaultReporter?: Reporter
-} = {}) => {
+} = {}): Promise<Results> => {
 
   const {
     report = props.defaultReporter || ((...args) => console.log(...args))
   } = props
 
+
+  const previousTests = clearTests()
+  const testGroups = clearTestGroups()
   const totalResults = createResults()
 
   for (const { name, fn } of testGroups) {
@@ -54,7 +66,7 @@ export const runTestGroups = async (props: {
 
   report('groupsSummary', totalResults)
 
-  testGroups.splice(0)
+  setTests(previousTests)
 
   return totalResults
 }

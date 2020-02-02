@@ -19,10 +19,19 @@ export type Results = {
 export type TestsRunner = (props?: { report?: Reporter, defaultReporter?: Reporter }) => Promise<Results>
 
 
-const tests: TestData[] = []
+export const tests: TestData[] = []
 
 export const test: TestFunction = (title, fn) => {
   tests.push({ title, fn })
+}
+
+export const clearTests = () => {
+  return tests.splice(0)
+}
+
+export const setTests = (arr: TestData[]) => {
+  clearTests()
+  tests.push(...arr)
 }
 
 export const createResults = (): Results => ({
@@ -58,7 +67,7 @@ export const runTests: TestsRunner = async (props = {}) => {
 
   report('summary', results)
 
-  tests.splice(0)
+  clearTests()
 
   return results
 }
