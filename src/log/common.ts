@@ -1,4 +1,6 @@
 
+// Adapted from https://github.com/njakob/terminus
+
 export interface LoggerInterface {
   log: (strings: TemplateStringsArray, ...keys: any[]) => boolean
   // Colors
