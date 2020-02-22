@@ -1,6 +1,6 @@
 {
   "name": "testra",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Test runner",
   "main": "index.js",
   "browser": "web.js",

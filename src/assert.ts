@@ -37,3 +37,13 @@ function deepStrictEqual(a: any, b: any, visited: Set<any> = new Set()): boolean
 
   return true
 }
+
+export type AssertThrows = (fn: () => any | never) => boolean
+export const throws: AssertThrows = fn => {
+  try {
+    fn()
+    return true
+  } catch(e) {
+    return false
+  }
+}

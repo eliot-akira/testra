@@ -1,7 +1,11 @@
-import { is, AssertIs } from './assert'
+import { is, AssertIs, throws, AssertThrows } from './assert'
 import { Reporter } from './reporter'
 
-export type AssertIt = (title: string, result: boolean, ...info: any[]) => void
+export type AssertIt = {
+  (title: string, result: boolean, ...info: any[]): void
+  is: AssertIs
+  throws: AssertThrows
+}
 
 export type TestFunction = (title: string, fn: TestCallback, info?: { [key: string]: any }) => void
 export type TestCallback = (it: AssertIt, is: AssertIs) => void | Promise<void>
@@ -47,10 +51,13 @@ export const runTests: TestsRunner = async (props = {}) => {
 
   const results: Results = createResults()
 
-  const it: AssertIt = (title, result, ...info) => {
-    report('assert', title, result, ...info)
-    results[ result ? 'success' : 'fail' ]++
-  }
+  const it: AssertIt = Object.assign(
+    (title: string, result: boolean, ...info: any[]) => {
+      report('assert', title, result, ...info)
+      results[ result ? 'success' : 'fail' ]++
+    },
+    { is, throws }
+  )
 
   let i = 0
   for (const { title, fn } of tests) {
