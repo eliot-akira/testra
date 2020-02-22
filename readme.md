@@ -118,8 +118,8 @@ Build
 yarn build
 ```
 
-Publish to NPM
+Publish to NPM - May need to run `yarn config set registry https://registry.npmjs.org`
 
 ```sh
-npm run release
+yarn release
 ```

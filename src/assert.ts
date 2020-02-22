@@ -42,8 +42,8 @@ export type AssertThrows = (fn: () => any | never) => boolean
 export const throws: AssertThrows = fn => {
   try {
     fn()
-    return true
-  } catch(e) {
     return false
+  } catch(e) {
+    return true
   }
 }

@@ -1,6 +1,6 @@
 import { test, runTests, testGroup, runTestGroups } from '../index'
 
-test('testa', async (it, is) => {
+test('testra', async (it, is) => {
 
   console.log('---')
   testGroup('Test group', async (test) => {
