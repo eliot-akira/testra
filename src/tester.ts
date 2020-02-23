@@ -53,7 +53,7 @@ export const runTests: TestsRunner = async (props = {}) => {
 
   const it: AssertIt = Object.assign(
     (title: string, result: boolean, ...info: any[]) => {
-      report('assert', title, result, ...info)
+      report('assert', title, result, ...(result ? [] : info))
       results[ result ? 'success' : 'fail' ]++
     },
     { is, throws }
