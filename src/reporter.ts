@@ -28,7 +28,7 @@ export const createReporter = (logger: LoggerInterface) => {
     case 'error':
     case 'groupError': {
       const [error] = args
-      log`${error.message || error}`
+      log`  ${red('✕')} ${error.message || error}`
       break
     }
     case 'summary': {

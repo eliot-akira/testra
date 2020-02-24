@@ -44,9 +44,17 @@ const waitKeyPressAndReload = (fn: () => any) => {
       }
       clearRequireCache()
       console.log('-----')
-      fn()
-      .then(() => waitKeyPressAndReload(fn))
-      .catch((e: Error) => console.error(e))
+      try {
+        const res = fn()
+        if (res instanceof Promise) {
+          res.then(() => waitKeyPressAndReload(fn))
+          .catch((e: Error) => console.error(e))
+          return
+        }
+      } catch(e) {
+        console.error(e)
+      }
+      waitKeyPressAndReload(fn)
     })
 }
 
