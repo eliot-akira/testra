@@ -1,6 +1,6 @@
 {
   "name": "testra",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Test runner",
   "main": "index.js",
   "browser": "web.js",
@@ -11,7 +11,7 @@
     "dev": "concurrently --raw --names babel,test,type \"babel src --verbose --out-dir build --extensions \".js,.ts\" --watch\" \"sleep 2 && nodemon --delay 1 --watch build build/test\" \"tsc --incremental --preserveWatchOutput --noEmit --watch\"",
     "build": "babel src --out-dir build --extensions \".js,.ts\" && tsc --declaration --emitDeclarationOnly",
     "type": "tsc --preserveWatchOutput --noEmit --watch",
-    "test": "node build/test",
+    "test": "yarn build && node build/test",
     "clean": "rm -rf build",
     "release": "yarn build && cp package.json build && cp readme.md build && cp run build && cd build && rm -rf test && npm publish"
   },

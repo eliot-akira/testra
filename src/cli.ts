@@ -23,6 +23,7 @@ if (!file) {
 const loadFile = async () => {
   try {
     let m = require(path.join(cwd, file))
+    if (m.default) m = m.default // Support export.default
     if (m instanceof Function) m = m(require('./index'))
     return await m
   } catch(e) {
