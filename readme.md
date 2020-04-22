@@ -24,7 +24,7 @@ test('Feature name', (it, is) => {
   it('has deep-strict equal values', is(obj1, obj2))
 })
 
-runTests() // const result = await runTests()
+export default runTests()
 ```
 
 ### Test groups
@@ -40,7 +40,7 @@ testGroup('Group name', test => {
   anotherFeatureTest(test)
 })
 
-runTestGroups() // const result = await runTestGroups()
+export default runTestGroups()
 ```
 
 Example: `src/test/feature.{ts,js}`
