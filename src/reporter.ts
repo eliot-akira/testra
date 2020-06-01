@@ -22,7 +22,7 @@ export const createReporter = (logger: LoggerInterface) => {
     case 'assert': {
       const [title, result, ...info] = args
       log`  ${ result ? green('✓') : red('✕') } ${title}`
-      if (info.length) info.forEach(i => console.log(i))
+      if (!result && info.length) info.forEach(i => console.log(i))
       break
     }
     case 'error':
