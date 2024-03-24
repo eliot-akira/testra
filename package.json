@@ -1,0 +1,55 @@
+{
+  "name": "testra",
+  "version": "2.0.0",
+  "description": "Minimal test runner",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eliot-akira/testra"
+  },
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./build/types/index.d.ts",
+      "require": "./build/cjs/index.js",
+      "import": "./build/esm/index.js"
+    },
+    "./*": {
+      "types": "./build/types/*.d.ts",
+      "require": "./build/cjs/*.js",
+      "import": "./build/esm/*.js"
+    }
+  },
+  "files": [
+    "build",
+    "license.txt",
+    "readme.md"
+  ],
+  "scripts": {
+    "build:cjs": "node build cjs",
+    "build:esm": " node build esm",
+    "build:web": "node build web",
+    "build:types": "tsc --project tsconfig.types.json --declaration --emitDeclarationOnly --outDir build/types",
+    "build": "mkdir -p build && npm run clean && npm run format && npm run build:web && npm run build:cjs && npm run build:esm && npm run build:types && npm run docs",
+    "dev": "node build dev",
+    "dev:docs": "npm run docs -- --watch --preserveWatchOutput",
+    "docs": "typedoc",
+    "test": "node build esm && node test/index.js",
+    "clean": "rm -rf build/cjs/* && rm -rf build/esm/* && rm -rf build/web/*",
+    "format": "prettier --no-config --no-semi --single-quote --write src",
+    "release": "npm run build && npm publish --access public"
+  },
+  "dependencies": {
+    "jest-diff": "^29.7.0"
+  },
+  "devDependencies": {
+    "@gjsify/esbuild-plugin-transform-ext": "^0.0.4",
+    "esbuild": "^0.20.2",
+    "typedoc": "^0.25.12",
+    "typedoc-plugin-mdn-links": "^3.1.18"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
