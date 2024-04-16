@@ -33,7 +33,7 @@
     "build:types": "tsc --project tsconfig.types.json --declaration --emitDeclarationOnly --outDir build/types",
     "build": "mkdir -p build && npm run clean && npm run format && npm run build:web && npm run build:cjs && npm run build:esm && npm run build:types && npm run docs",
     "dev": "concurrently --raw 'node build dev' 'typedoc --watch --preserveWatchOutput'",
-    "docs": "typedoc",
+    "docs": "typedoc && node build docs",
     "test": "node build esm && node test/index.js",
     "clean": "rm -rf build/cjs/* && rm -rf build/esm/* && rm -rf build/web/*",
     "format": "prettier --no-config --no-semi --single-quote --write src",

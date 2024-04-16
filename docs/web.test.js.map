@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/web.test.ts"],
+  "sourcesContent": ["import type * as Testra from './'\n\ndeclare var window: {\n  testra: typeof Testra\n}\n\nconst { testra } = window\nconst { test, is, ok, run, throws } = testra\n\nconsole.log('testra', testra)\n\ntest('test 1', () => {\n  ok(true, 'truthy')\n\n  throws(() => {\n    throw new Error('ok')\n  }, 'should throw')\n\n  is({ a: 1 }, { b: 2 }, 'deep equal')\n})\n\ntest('test 2', async () => {\n  await new Promise((resolve) => setTimeout(resolve, 1000))\n  ok(true, 'async')\n})\n\nrun()\n"],
+  "mappings": "mBAMA,GAAM,CAAE,OAAAA,CAAO,EAAI,OACb,CAAE,KAAAC,EAAM,GAAAC,EAAI,GAAAC,EAAI,IAAAC,EAAK,OAAAC,CAAO,EAAIL,EAEtC,QAAQ,IAAI,SAAUA,CAAM,EAE5BC,EAAK,SAAU,IAAM,CACnBE,EAAG,GAAM,QAAQ,EAEjBE,EAAO,IAAM,CACX,MAAM,IAAI,MAAM,IAAI,CACtB,EAAG,cAAc,EAEjBH,EAAG,CAAE,EAAG,CAAE,EAAG,CAAE,EAAG,CAAE,EAAG,YAAY,CACrC,CAAC,EAEDD,EAAK,SAAU,SAAY,CACzB,MAAM,IAAI,QAASK,GAAY,WAAWA,EAAS,GAAI,CAAC,EACxDH,EAAG,GAAM,OAAO,CAClB,CAAC,EAEDC,EAAI",
+  "names": ["testra", "test", "is", "ok", "run", "throws", "resolve"]
+}

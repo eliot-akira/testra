@@ -67,10 +67,18 @@ if (isDev) command = args.shift() // Optional: cjs, esm, web
     //   outfile: `./build/web/${name}.js`,
     // })
 
+  } else if (command === 'docs') {
+
+    // Fix link to screenshot
+    const docsIndex = 'docs/api/index.html'
+    await fs.writeFile(
+      docsIndex,
+      (await fs.readFile(docsIndex, 'utf8')).replace('docs/screenshot.png', '/screenshot.png')
+    )
+    console.log('Wrote', docsIndex)
+    return
   } else {
-
-    // docs
-
+    return
   }
 
   const context = await esbuild.context(esbuildOptions)
@@ -88,8 +96,9 @@ if (isDev) command = args.shift() // Optional: cjs, esm, web
     // Copy from docs
     await Promise.all([
       fs.copyFile(`./docs/web.js`, `./build/web/${name}.js`),
-      fs.copyFile(`./docs/web.js.map`, `./build/web/${name}.js.map`)
+      fs.copyFile(`./docs/web.js.map`, `./build/web/${name}.js.map`),
     ])
+
   } else if (command === 'test') {
     // npm run test
   }

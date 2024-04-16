@@ -2,9 +2,9 @@
 
 Minimal test runner
 
-![Screenshot](/screenshot.png)
+![Screenshot](docs/screenshot.png)
 
-#### [API](https://eliot-akira.github.io/testra/api/) · [Source](https://github.com/eliot-akira/testra)
+#### [Documentation - API](https://eliot-akira.github.io/testra/api/) · [Source](https://github.com/eliot-akira/testra)
 
 ## Install
 
