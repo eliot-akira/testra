@@ -1,8 +1,9 @@
 {
-  "entryPoints": ["src"],
+  "entryPoints": ["src/index.ts"],
   "out": "./docs/api",
-  "entryPointStrategy": "expand",
+  "entryPointStrategy": "resolve",
   "exclude": [
+    // "src/index.ts",
     "src/web.ts",
     "src/web.test.ts",
   ],

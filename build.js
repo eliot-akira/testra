@@ -4,7 +4,7 @@ import { transformExtPlugin } from '@gjsify/esbuild-plugin-transform-ext'
 
 const args = process.argv.slice(2)
 let command = args.shift() || 'build'
-const isDev = command === 'dev'
+const isDev = command === 'dev' || command === 'test'
 
 if (isDev) command = args.shift() // Optional: cjs, esm, web
 
@@ -48,7 +48,7 @@ if (isDev) command = args.shift() // Optional: cjs, esm, web
       minify: false,
       sourcemap: false,
     })
-  } else if (command === 'esm') {
+  } else if (command === 'esm' || command === 'test') {
 
     delete esbuildOptions.outfile
 
@@ -90,6 +90,8 @@ if (isDev) command = args.shift() // Optional: cjs, esm, web
       fs.copyFile(`./docs/web.js`, `./build/web/${name}.js`),
       fs.copyFile(`./docs/web.js.map`, `./build/web/${name}.js.map`)
     ])
+  } else if (command === 'test') {
+    // npm run test
   }
 
   if (isDev) {

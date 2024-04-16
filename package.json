@@ -32,8 +32,7 @@
     "build:web": "node build web",
     "build:types": "tsc --project tsconfig.types.json --declaration --emitDeclarationOnly --outDir build/types",
     "build": "mkdir -p build && npm run clean && npm run format && npm run build:web && npm run build:cjs && npm run build:esm && npm run build:types && npm run docs",
-    "dev": "node build dev",
-    "dev:docs": "npm run docs -- --watch --preserveWatchOutput",
+    "dev": "concurrently --raw 'node build dev' 'typedoc --watch --preserveWatchOutput'",
     "docs": "typedoc",
     "test": "node build esm && node test/index.js",
     "clean": "rm -rf build/cjs/* && rm -rf build/esm/* && rm -rf build/web/*",
@@ -45,6 +44,7 @@
   },
   "devDependencies": {
     "@gjsify/esbuild-plugin-transform-ext": "^0.0.4",
+    "concurrently": "^8.2.2",
     "esbuild": "^0.20.2",
     "typedoc": "^0.25.12",
     "typedoc-plugin-mdn-links": "^3.1.18"
