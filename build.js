@@ -73,7 +73,7 @@ if (isDev) command = args.shift() // Optional: cjs, esm, web
     const docsIndex = 'docs/api/index.html'
     await fs.writeFile(
       docsIndex,
-      (await fs.readFile(docsIndex, 'utf8')).replace('docs/screenshot.png', '/screenshot.png')
+      (await fs.readFile(docsIndex, 'utf8')).replace('docs/screenshot.png', '../screenshot.png')
     )
     console.log('Wrote', docsIndex)
     return
