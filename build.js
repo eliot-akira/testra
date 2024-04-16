@@ -77,7 +77,10 @@ if (isDev) command = args.shift() // Optional: cjs, esm, web
     )
     console.log('Wrote', docsIndex)
     return
+  } else if (!command) {
+    // OK
   } else {
+    console.log('Unknown command:', command)
     return
   }
 

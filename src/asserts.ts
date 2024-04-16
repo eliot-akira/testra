@@ -14,8 +14,9 @@ export type AssertionData = {
 
 /**
  * Assert that a value is truthy: everything except `false`, `0`, `-0`, `0n`, `null`, `undefined`, `NaN`, or empty string.
+ * @throws {@link Assertion}
  */
-export function ok(value: any, title = 'should be truthy'): void | never {
+export function ok(value: any, title = 'should be truthy'): void {
   if (Boolean(value)) return state.currentTest?.pass({ operator: 'ok', title })
 
   throw new Assertion({
@@ -30,6 +31,7 @@ export function ok(value: any, title = 'should be truthy'): void | never {
  * Assert two values are deep equal. Unlike strict equal comparison with `===`,
  * deep equal compares all properties of arrays and objects, including any cyclic
  * references.
+ * @throws {@link Assertion}
  */
 export function is(a: any, b: any, title = 'should be the same') {
   if (isPrimitive(a) || isPrimitive(b) ? Object.is(a, b) : deepEqual(a, b)) {
@@ -44,7 +46,8 @@ export function is(a: any, b: any, title = 'should be the same') {
 }
 
 /**
- * Assert not deep equal
+ * Assert that two values are not deep equal.
+ * @throws {@link Assertion}
  */
 export function not(a: any, b: any, title = 'should be different') {
   if (isPrimitive(a) || isPrimitive(b) ? !Object.is(a, b) : !deepEqual(a, b))
@@ -65,7 +68,8 @@ export function not(a: any, b: any, title = 'should be different') {
 }
 
 /**
- * Assert a function throws an error
+ * Assert that a function throws an error.
+ * @throws {@link Assertion}
  */
 export function throws(fn: Function, title = 'should throw') {
   try {
@@ -77,7 +81,10 @@ export function throws(fn: Function, title = 'should throw') {
   }
 }
 
-function deepEqual(a: any, b: any): boolean {
+/**
+ * Compare two values as deep equal
+ */
+export function deepEqual(a: any, b: any): boolean {
   if (a === b) return true
   if (a && b) {
     if (a.constructor === b.constructor) {
@@ -107,7 +114,10 @@ function isPrimitive(val: any) {
 const slice = (a: any) =>
   isPrimitive(a) ? a : a.slice ? a.slice() : Object.assign({}, a)
 
-class Assertion extends Error {
+/**
+ * Assert functions throw this when assertion fails
+ */
+export class Assertion extends Error {
   title: string
   operator?: string
   expects?: any
