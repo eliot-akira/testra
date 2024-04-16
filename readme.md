@@ -15,8 +15,8 @@ npm install --save-dev testra
 ## Overview
 
 1. Create tests with title and callback (can be async).
-2. Call asserts inside test: `is`, `ok`, `not`, `throws`
-3. Run them with `run`
+2. Call asserts inside test: `is`, `ok`, `not`, `throws`.
+3. Run the tests with `run`.
 
 ```js
 import { test, is, ok, run, throws } from 'testra'

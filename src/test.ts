@@ -48,16 +48,16 @@ export function test(
           ? console.log(`${GREEN}(pass) ${arg}${RESET}`)
           : console.log(`%c(pass) ${arg}`, 'color: green') // #229944
 
-      let { operator: op, message: msg } = arg
+      let { operator, title } = arg
 
       state.assertIndex++
       isNode
-        ? console.log(`  ${GREEN}✔${RESET} ${msg}`) // √   ${op && ` (${op})`} ${state.assertIndex} -
-        : console.log(`%c✔ ${msg}`, 'color: green') // #229944
+        ? console.log(`  ${GREEN}✔${RESET} ${title}`) // √   ${operator && ` (${operator})`} ${state.assertIndex} -
+        : console.log(`%c✔ ${title}`, 'color: green') // #229944
 
       test.assertion.push({
-        idx: state.assertIndex,
-        msg,
+        index: state.assertIndex,
+        title,
       })
       state.passed++
     },
@@ -68,10 +68,10 @@ export function test(
       // when error is not assertion
       else if (arg.name !== 'Assertion') return console.error(arg)
 
-      let { operator: op, message: msg, ...info } = arg
+      let { operator, title, ...info } = arg
 
       isNode
-        ? (console.log(`  ${RED}× ${msg}`), // ${state.assertIndex} -
+        ? (console.log(`  ${RED}× ${title}`), // ${state.assertIndex} -
           info &&
             'actual' in info &&
             console.info(diff(info.expects, info.actual), RESET))
@@ -79,13 +79,13 @@ export function test(
           // console.info(`expects:${RESET}`, typeof (info.expects ?? info.expected) === 'string' ? JSON.stringify(info.expects ?? info.expected) : (info.expects ?? info.expected), RED),
           // console.info(RESET) // console.error(new Error, RESET)
           info
-          ? (console.log(`%c× ${msg}%c`, 'color:red', 'color:inherit', info),
+          ? (console.log(`%c× ${title}%c`, 'color:red', 'color:inherit', info),
             console.log(diff(info.expects, info.actual)))
-          : console.assert(false, `${state.assertIndex} - ${msg}`)
+          : console.assert(false, `${state.assertIndex} - ${title}`)
 
       test.assertion.push({
-        idx: state.assertIndex,
-        msg,
+        index: state.assertIndex,
+        title,
         info,
         error: new Error(),
       })
