@@ -22,8 +22,8 @@ export function ok(value: any, title = 'should be truthy'): void {
   throw new Assertion({
     operator: 'ok',
     title,
-    actual: value,
     expects: true,
+    actual: value,
   })
 }
 
@@ -40,8 +40,8 @@ export function is(a: any, b: any, title = 'should be the same') {
   throw new Assertion({
     operator: 'is',
     title,
-    actual: slice(a),
-    expects: slice(b),
+    expects: slice(a),
+    actual: slice(b),
   })
 }
 
@@ -56,9 +56,9 @@ export function not(a: any, b: any, title = 'should be different') {
   throw new Assertion({
     operator: 'is not',
     title,
-    actual: slice(a),
+    expects: slice(a),
     // this contraption makes chrome debugger display nicer
-    expects: new (class Not {
+    actual: new (class Not {
       actual: any
       constructor(a: any) {
         this.actual = a
