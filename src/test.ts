@@ -156,12 +156,13 @@ let nestedRuns = 0
  * ```
  */
 export async function run(fn?: () => Promise<any>) {
+  let result
   if (fn) {
     nestedRuns++
-    await fn()
+    result = await fn()
     nestedRuns--
   }
-  if (nestedRuns) return
+  if (nestedRuns) return result
   try {
     state.start()
 
