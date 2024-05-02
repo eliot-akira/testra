@@ -37,4 +37,7 @@ run()
 
 ## Universal
 
-The test report uses `console` to display the results with visual structure. In the browser it uses `console.group` and CSS to style some text. On the server it uses ANSI color sequences for the terminal; it also exits with code `1` when any test fails, for use in build and test pipeline.
+The test report uses `console` to display the results with visual structure.
+
+- In the browser it uses `console.group` and CSS to style some text.
+- On the server it uses ANSI color sequences for the terminal. It also exits with code `1` when any test fails, for use in build and test pipeline.
