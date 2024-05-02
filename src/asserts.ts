@@ -59,9 +59,9 @@ export function not(a: any, b: any, title = 'should be different') {
     expects: slice(a),
     // this contraption makes chrome debugger display nicer
     actual: new (class Not {
-      actual: any
+      expects: any
       constructor(a: any) {
-        this.actual = a
+        this.expects = a
       }
     })(a),
   })
