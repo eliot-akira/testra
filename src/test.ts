@@ -66,7 +66,16 @@ export function test(
 
       if (typeof arg === 'string') return console.error(arg)
       // when error is not assertion
-      else if (arg.name !== 'Assertion') return console.error(arg)
+      else if (arg.name !== 'Assertion') {
+        if (arg instanceof Error) {
+          if (isNode) console.log(`  ${RED}× ${arg.message}${RESET}`)
+          else console.log(arg.message)
+          // console.log(arg.stack) // Stack trace to internal built files
+        } else {
+          console.error(arg)
+        }
+        return
+      }
 
       let { operator, title, ...info } = arg
 
