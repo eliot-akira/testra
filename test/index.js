@@ -5,7 +5,7 @@ run(async () => {
   await import('./test-1.js')
 
   test('Test 3', () => {
-    throw new Error('Test throws error')
+    throw new Error('fail with error')
   })
 
 })
