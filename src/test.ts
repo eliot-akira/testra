@@ -112,7 +112,7 @@ export function test(
       state.currentTest = test
       result = await test.run(test.pass, test.fail)
       // let all planned errors to log
-      await new Promise((r) => setTimeout(r))
+      await new Promise((r) => setTimeout(r, 0))
     } catch (e) {
       test.fail(e)
       state.failed++
