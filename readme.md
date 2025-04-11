@@ -35,6 +35,36 @@ test('Test 2', async () => {
 run()
 ```
 
+### Multiple tests
+
+Additional files can be imported to enqueue tests before calling `run`.
+
+```js
+import { run } from 'testra'
+import './tests-1.js'
+import './tests-2.js'
+
+run()
+```
+
+Alternatively, provide an async callback to `run` where the tests are dynamically imported.
+
+```js
+run(async () => {
+  // ..tests..
+})
+```
+
+### Setup and cleanup
+
+```js
+run(async () => {
+  await setupThings()
+  // ..tests..
+})
+  .finally(cleanupThings)
+```
+
 ## Universal
 
 The test report uses `console` to display the results with visual structure.
