@@ -113,6 +113,7 @@ if (isDev) command = args.shift() // Optional: cjs, esm, web
       servedir: './docs'
     })
   } else {
+    await context.dispose()
     process.exit()
   }
 
